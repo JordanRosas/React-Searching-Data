@@ -15,6 +15,7 @@ import AnimalForm from './animals/AnimalForm'
 import EmployeeForm from './employee/EmployeeForm'
 import OwnerForm from './owners/OwnerForm'
 import Login from './authentication/Login'
+import SearchResults from './search/SearchResults';
 
 
 
@@ -34,6 +35,7 @@ export default class ApplicationViews extends Component {
     componentDidMount() {
         
         AnimalManager.getAll().then(allAnimals => {
+            console.log(allAnimals)
             this.setState({
                 animals: allAnimals
             })
@@ -179,6 +181,9 @@ export default class ApplicationViews extends Component {
                     return <OwnerForm {...props}
                         addOwner={this.addOwner}
                         owners={this.state.owners} />
+                }} />
+                <Route path="/search" render={(props) => {
+                    return <SearchResults  {...this.props} />
                 }} />
 
             </React.Fragment>
